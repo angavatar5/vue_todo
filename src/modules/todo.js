@@ -17,28 +17,28 @@ const TodoState = {
         }
     },  
     actions: {
-        async fetchAllTodo(context) {
+        async fetchAllTodo({commit}) {
             try {
                 const req = await axios.get('/todos')
                 const {data} = await req
-                context.commit('GET_TODO', data)
+                commit('GET_TODO', data)
               } catch(error) {
                 console.log(error)
               }
         },
-        async addTodo(context, title) {
+        async addTodo({commit}, title) {
             try {
                 const req = await axios.post('/todos', {title, completed: false});
                 const {data} = await req
-                context.commit('SET_NEW_TODO', data)
+                commit('SET_NEW_TODO', data)
             } catch(error) {
                 console.log(error)
             }
         },
-        async deleteTodo(context,id) {
+        async deleteTodo({commit},id) {
             try {
                 await axios.delete(`/todos/${id}`)
-                context.commit('DELETE_TODO', id)
+                commit('DELETE_TODO', id)
             } catch(error) {
                 console.log(error)
             }
