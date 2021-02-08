@@ -12,14 +12,11 @@ const TodoState = {
         SET_NEW_TODO(state, todo) {
             state.todos.unshift(todo)
         },
-        COMPLETE_TODO(state, completeTodo) {
-            const index = state.todos.findIndex(todo => todo.id === completeTodo.id)
-            if(index !== -1) {
-                state.todos.splice(index, 1, completeTodo)
-            }
-        },
         UPDATE_TODO(state, updateTodo) {
-            state.todos.findIndex(todo => todo.id === updateTodo.id)
+            const index = state.todos.findIndex(todo => todo.id === updateTodo.id)
+            if(index !== -1) {
+                state.todos.splice(index, 1, updateTodo)
+            }
         },
         DELETE_TODO(state, id) {
             state.todos = state.todos.filter(todo => todo.id !== id)
@@ -52,17 +49,13 @@ const TodoState = {
                 console.log(error)
             }
         },
-        async completeTodo({commit}, completeTodo) {
+        async updateTodo({commit}, completeTodo) {
             try {
                 const req = await axios.put(`/todos/${completeTodo.id}`, completeTodo)
-                commit('COMPLETE_TODO', req.data)
+                commit('UPDATE_TODO', req.data)
             } catch(error) {
                 console.log(error)
             }
-        },
-        async updateTodo({commit},updTodo) {
-            const req = await axios.put(`/todos/${updTodo.id}`, updTodo)
-            commit('UPDATE_TODO', req.data)
         }
     },
     getters: {

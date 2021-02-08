@@ -46,19 +46,21 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchAllTodo', 'deleteTodo', 'updateTodo', 'completeTodo']),
+        ...mapActions(['fetchAllTodo', 'deleteTodo', 'updateTodo']),
         updateDoubleClick(todo){
             const complTodo = {
                 id: todo.id,
                 title: todo.title,
                 completed: !todo.completed
             }
-            console.log(complTodo)
-            this.completeTodo(complTodo);
+            this.updateTodo(complTodo);
         },
         getTodo(todo) {
             this.id = todo.id
             this.update_todo = todo.title;
+        },
+        getValueChange(event) {
+            this.update_todo = event.target.value
         },
         updateValue() {
             const updTodo = {
@@ -67,9 +69,6 @@ export default {
             }
             this.updateTodo(updTodo)
         },
-        getValueChange(event) {
-            this.update_todo = event.target.value
-        }
     },
     beforeMount() {
         this.fetchAllTodo();
