@@ -62,7 +62,6 @@ const TodoState = {
         },
         async updateTodo({commit},updTodo) {
             const req = await axios.put(`/todos/${updTodo.id}`, updTodo)
-            console.log(req.data)
             commit('UPDATE_TODO', req.data)
         }
     },
