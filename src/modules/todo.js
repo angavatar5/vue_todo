@@ -49,9 +49,9 @@ const TodoState = {
                 console.log(error)
             }
         },
-        async updateTodo({commit}, completeTodo) {
+        async updateTodo({commit},updTodo) {
             try {
-                const req = await axios.put(`/todos/${completeTodo.id}`, completeTodo)
+                const req = await axios.put(`/todos/${updTodo.id}`, updTodo)
                 commit('UPDATE_TODO', req.data)
             } catch(error) {
                 console.log(error)

@@ -48,12 +48,12 @@ export default {
     methods: {
         ...mapActions(['fetchAllTodo', 'deleteTodo', 'updateTodo']),
         updateDoubleClick(todo){
-            const complTodo = {
+            const completeTodo = {
                 id: todo.id,
                 title: todo.title,
                 completed: !todo.completed
             }
-            this.updateTodo(complTodo);
+            this.updateTodo(completeTodo);
         },
         getTodo(todo) {
             this.id = todo.id
